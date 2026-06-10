@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import type { Car } from "../types/types";
 
-interface TaskListProps {
-  tasks: { id: number; name: string }[];
-  onRemoveTask: (id: number) => void;
+interface CarListProps {
+  cars: Car[];
+  onRemoveCar: (id: number) => void;
 }
 
 const List = styled.ul`
@@ -37,17 +38,21 @@ const Button = styled.button`
   }
 `;
 
-const TaskList: React.FC<TaskListProps> = ({ tasks, onRemoveTask }) => {
+const CarList: React.FC<CarListProps> = ({ cars, onRemoveCar }) => {
   return (
     <List>
-        {tasks.map((task) => (
-          <ListItem key={task.id}>
-            {task.name}
-            <Button onClick={() => onRemoveTask(task.id)}>Remove</Button>
-          </ListItem>
-        ))}
+      {cars.map((car) => (
+        <ListItem key={car.id}>
+          <div>
+            <strong>{car.marca}</strong> - {car.modelo} ({car.ano}) | {car.placa}
+            <br />
+            <small>Cor: {car.cor}</small>
+          </div>
+          <Button onClick={() => onRemoveCar(car.id)}>Remover</Button>
+        </ListItem>
+      ))}
     </List>
   );
 };
 
-export default TaskList;
+export default CarList;

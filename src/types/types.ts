@@ -1,6 +1,8 @@
-export interface Task {
+export interface Car {
     id: number;
-    name: string;
-    completed: boolean;
-    completedAt?: Date | null; // Campo opcional para armazenar a data de conclusão
+    modelo: string;
+    marca: string;
+    placa: string;
+    cor: string;
+    ano: number;
 }
