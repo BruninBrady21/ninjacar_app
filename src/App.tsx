@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import api from './services/api';
 import CarList from './pages/CarList';
@@ -9,8 +10,39 @@ import Footer from './components/Footer/Footer';
 import type { Car } from './types/types';
 import './App.css';
 
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+`;
+
+const ModalContent = styled.div`
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 720px;
+  width: 95%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  position: relative;
+`;
+
+const ModalClose = styled.button`
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+`;
+
 function App() {
   const [cars, setCars] = useState<Car[]>([]);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
     api.get('/cars')
@@ -23,12 +55,14 @@ function App() {
   }, []);
 
   const handleAddCar = (car: Omit<Car, 'id'>) => {
-    api.post('/cars', car)
+    return api.post('/cars', car)
       .then((response) => {
         setCars((currentCars) => [...currentCars, response.data]);
+        return response.data;
       })
       .catch((error) => {
         console.error('Error adding car:', error);
+        throw error;
       });
   };
 
@@ -65,12 +99,20 @@ function App() {
             <Route path="/" element={
               <>
                 <h1>Meus Carros</h1>
-                <AddNewCar onAddCar={handleAddCar} />
+                <button type="button" onClick={() => setShowAddModal(true)}>Inserir novo carro</button>
                 <CarList cars={cars} onRemoveCar={handleRemoveCar} />
               </>
             } />
           </Routes>
         </MainContent>
+        {showAddModal && (
+          <ModalOverlay onClick={() => setShowAddModal(false)}>
+            <ModalContent onClick={(e) => e.stopPropagation()}>
+              <ModalClose aria-label="Fechar" onClick={() => setShowAddModal(false)}>&times;</ModalClose>
+              <AddNewCar onAddCar={(car) => handleAddCar(car).then(() => setShowAddModal(false))} />
+            </ModalContent>
+          </ModalOverlay>
+        )}
         <Footer />
       </div>
     </Router>
