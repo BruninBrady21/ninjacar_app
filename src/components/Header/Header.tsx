@@ -13,7 +13,7 @@ const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #D2EACC;
   color: white;
   padding: 20px 24px;
   gap: 12px;

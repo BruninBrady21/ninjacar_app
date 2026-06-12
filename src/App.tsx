@@ -6,11 +6,18 @@ import CarList from './pages/CarList';
 import AddNewCar from './pages/AddNewCar';
 import EditCar from './pages/EditCar';
 import Settings from './pages/Settings';
+import CarFilter from './components/CarFilter/CarFilter';
 import MainContent from './components/MainContent/MainContent';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import type { Car } from './types/types';
 import './App.css';
+
+const AppContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -46,6 +53,7 @@ function App() {
   const [cars, setCars] = useState<Car[]>([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingCar, setEditingCar] = useState<Car | null>(null);
+  const [filter, setFilter] = useState<{ marcas: string[]; modelos: string[]; anos: number[] }>({ marcas: [], modelos: [], anos: [] });
 
   useEffect(() => {
     api.get('/cars')
@@ -97,7 +105,7 @@ function App() {
 
   return (
     <Router>
-      <div className="app-container">
+      <AppContainer>
         <Header />
         <MainContent>
           <Routes>
@@ -105,7 +113,19 @@ function App() {
               <>
                 <h1>Meus Carros</h1>
                 <button type="button" onClick={() => setShowAddModal(true)}>Inserir novo carro</button>
-                <CarList cars={cars} onRemoveCar={handleRemoveCar} onEditCar={(car) => setEditingCar(car)} />
+                <CarFilter cars={cars} onChange={(f) => setFilter(f)} />
+                {
+                  /* compute filtered list based on filter state */
+                }
+                {(() => {
+                  const filtered = cars.filter((c) => {
+                    if (filter.marcas.length > 0 && !filter.marcas.includes(c.marca)) return false;
+                    if (filter.modelos.length > 0 && !filter.modelos.includes(c.modelo)) return false;
+                    if (filter.anos.length > 0 && !filter.anos.includes(c.ano)) return false;
+                    return true;
+                  });
+                  return <CarList cars={filtered} onRemoveCar={handleRemoveCar} onEditCar={(car) => setEditingCar(car)} />;
+                })()}
               </>
             } />
           <Route path="/settings" element={<Settings />} />
@@ -146,7 +166,7 @@ function App() {
           </ModalOverlay>
         )}
         <Footer />
-      </div>
+      </AppContainer>
     </Router>
   );
 }

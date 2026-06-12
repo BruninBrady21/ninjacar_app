@@ -7,6 +7,30 @@
       "cor": "Preto",
       "ano": 2016,
       "id": "Rb6LMPvxkbs"
+    },
+    {
+      "modelo": "q",
+      "marca": "q",
+      "placa": "q",
+      "cor": "qq",
+      "ano": 4561,
+      "id": "V5PWgkzzpTU"
+    },
+    {
+      "modelo": "Corolla",
+      "marca": "Toyota",
+      "placa": "qeokdeow",
+      "cor": "roxo",
+      "ano": 1234,
+      "id": "9LFSZJ3ERh4"
+    },
+    {
+      "modelo": "Focus",
+      "marca": "Ford",
+      "placa": "23rf4",
+      "cor": "ierojc",
+      "ano": 1234,
+      "id": "-Mz0_NP9p2I"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

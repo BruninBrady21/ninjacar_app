@@ -41,7 +41,7 @@ const Button = styled.button<{ variant?: "danger" | "secondary" }>`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${({ variant }) => (variant === "secondary" ? "#5a6268" : "#c82333")};
+    background-color: ${({ variant }) => (variant === "secondary" ? "#5a6268" : "#7e0d19")};
   }
 `;
 

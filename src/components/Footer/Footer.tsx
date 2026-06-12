@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
-  background-color: #ffffff;
+  background-color: #D2EACC;
   color: #5c5959;
   text-align: center;
-  padding: 20px 0;
-  position: fixed;
-  bottom: 0;
+  padding: 10px 0;
   width: 100%;
-  z-index: 10;
 `;
 
 const LinkButton = styled.button`

@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "styled-components";
+import ninjaFix from '../assets/ninjago_fix.gif';
 
 const SettingsContainer = styled.main`
   display: flex;
@@ -13,7 +13,7 @@ const SettingsContainer = styled.main`
   text-align: center;
 `;
 
-const CatImage = styled.img`
+const NinjaImage = styled.img`
   max-width: 100%;
   width: 320px;
   height: auto;
@@ -40,9 +40,11 @@ const Settings = () => {
   return (
     <SettingsContainer>
       <SettingsTitle>Configurações</SettingsTitle>
-      <CatImage src="https://http.cat/501" alt="HTTP 501 - Not Implemented" />
+      <NinjaImage src={ninjaFix} alt="Ninja Fixing" />
       <SettingsText>
-        Eita meu ninja! A página de configurações está em branco por enquanto, mas já está pronta para receber as opções futuramente.
+        Eita meu ninja! A página de configurações ainda está sendo implementada... mas não desanime! 
+        Continue cadastrando normalmente teus veículos e aproveite a experiência. 
+        Em breve, teremos novidades incríveis para personalizar ainda mais o NinjaCar do seu jeito! Fique ligado!
       </SettingsText>
     </SettingsContainer>
   );
