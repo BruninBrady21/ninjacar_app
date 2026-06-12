@@ -49,6 +49,7 @@ const Slogan = styled.p`
   color: #5c5959;
   font-size: 1rem;
   text-align: center;
+  font-style: italic;
 `;
 
 const Nav = styled.nav`
@@ -82,8 +83,7 @@ const Header: React.FC = () => {
       <Slogan>Seu veículo na melhor listagem ninja!</Slogan>
       <Nav>
         <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/completed">Tarefas Concluídas</StyledLink>
-        <StyledLink to="/pending">Tarefas Pendentes</StyledLink>
+        <StyledLink to="/settings">Configurações</StyledLink>
       </Nav>
     </HeaderContainer>
   );

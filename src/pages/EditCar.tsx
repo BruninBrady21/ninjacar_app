@@ -1,14 +1,16 @@
-﻿import React from "react";
+import React from "react";
 import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import type { Car } from "../types/types";
 import type { FormikHelpers } from "formik";
 
-interface AddCarProps {
-  onAddCar: (car: Omit<Car, 'id'>) => Promise<Car>;
+interface EditCarProps {
+  car: Car;
+  onUpdateCar: (car: Car) => Promise<Car>;
+  onCancel: () => void;
 }
 
-type CarFormValues = Omit<Car, 'id' | 'ano'> & {
+type CarFormValues = Omit<Car, "id" | "ano"> & {
   ano: string;
 };
 
@@ -16,7 +18,7 @@ const StyledForm = styled(Form)`
   display: grid;
   gap: 12px;
   margin-bottom: 20px;
-  background-color: #B0DAA6;
+  background-color: #b0daa6;
   border-radius: 8px;
   width: 100%;
 `;
@@ -43,29 +45,47 @@ const ErrorText = styled.div`
   font-size: 12px;
 `;
 
+const ButtonBar = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+`;
+
 const Button = styled.button`
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #28a745;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+`;
+
+const SaveButton = styled(Button)`
+  background-color: #007bff;
+  color: white;
 
   &:hover {
-    background-color: #218838;
+    background-color: #0069d9;
   }
 `;
 
-const AddNewCar: React.FC<AddCarProps> = ({ onAddCar }) => (
+const CancelButton = styled(Button)`
+  background-color: #6c757d;
+  color: white;
+
+  &:hover {
+    background-color: #5a6268;
+  }
+`;
+
+const EditCar: React.FC<EditCarProps> = ({ car, onUpdateCar, onCancel }) => (
   <Formik
     initialValues={{
-      modelo: "",
-      marca: "",
-      placa: "",
-      cor: "",
-      ano: "",
+      modelo: car.modelo,
+      marca: car.marca,
+      placa: car.placa,
+      cor: car.cor,
+      ano: String(car.ano),
     }}
     validate={(values: CarFormValues) => {
       const errors: Partial<Record<keyof CarFormValues, string>> = {};
@@ -90,21 +110,19 @@ const AddNewCar: React.FC<AddCarProps> = ({ onAddCar }) => (
 
       return errors;
     }}
-    onSubmit={(values, { resetForm, setSubmitting }: FormikHelpers<CarFormValues>) => {
+    onSubmit={(values, { setSubmitting }) => {
       setSubmitting(true);
 
-      onAddCar({
+      onUpdateCar({
+        ...car,
         modelo: values.modelo,
         marca: values.marca,
         placa: values.placa,
         cor: values.cor,
         ano: Number(values.ano),
       })
-        .then(() => {
-          resetForm();
-        })
         .catch((error) => {
-          console.error("Erro ao salvar o carro:", error);
+          console.error("Erro ao atualizar o carro:", error);
         })
         .finally(() => {
           setSubmitting(false);
@@ -118,7 +136,7 @@ const AddNewCar: React.FC<AddCarProps> = ({ onAddCar }) => (
           <Field
             as={Input}
             name="modelo"
-            placeholder="Informe o modelo do carro."
+            placeholder="Modelo"
             value={values.modelo}
             onChange={handleChange}
           />
@@ -130,7 +148,7 @@ const AddNewCar: React.FC<AddCarProps> = ({ onAddCar }) => (
           <Field
             as={Input}
             name="marca"
-            placeholder="Informe a marca do carro."
+            placeholder="Marca"
             value={values.marca}
             onChange={handleChange}
           />
@@ -142,7 +160,7 @@ const AddNewCar: React.FC<AddCarProps> = ({ onAddCar }) => (
           <Field
             as={Input}
             name="placa"
-            placeholder="Informe a placa do carro."
+            placeholder="Placa"
             value={values.placa}
             onChange={handleChange}
           />
@@ -154,7 +172,7 @@ const AddNewCar: React.FC<AddCarProps> = ({ onAddCar }) => (
           <Field
             as={Input}
             name="cor"
-            placeholder="Informe a cor do carro."
+            placeholder="Cor"
             value={values.cor}
             onChange={handleChange}
           />
@@ -166,7 +184,7 @@ const AddNewCar: React.FC<AddCarProps> = ({ onAddCar }) => (
           <Field
             as={Input}
             name="ano"
-            placeholder="Informe o ano do carro."
+            placeholder="Ano"
             value={values.ano}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               const cleaned = event.target.value.replace(/\D/g, "");
@@ -176,12 +194,17 @@ const AddNewCar: React.FC<AddCarProps> = ({ onAddCar }) => (
           <ErrorMessage name="ano" component={ErrorText} />
         </Label>
 
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Salvando..." : "Adicionar Carro"}
-        </Button>
+        <ButtonBar>
+          <SaveButton type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Atualizando..." : "Salvar alterações"}
+          </SaveButton>
+          <CancelButton type="button" onClick={onCancel}>
+            Cancelar
+          </CancelButton>
+        </ButtonBar>
       </StyledForm>
     )}
   </Formik>
 );
 
-export default AddNewCar;
+export default EditCar;

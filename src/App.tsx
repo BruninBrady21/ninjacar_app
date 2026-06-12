@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import api from './services/api';
 import CarList from './pages/CarList';
 import AddNewCar from './pages/AddNewCar';
+import EditCar from './pages/EditCar';
+import Settings from './pages/Settings';
 import MainContent from './components/MainContent/MainContent';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -21,11 +23,11 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background: #fff;
+  background: #B0DAA6;
   padding: 20px;
   border-radius: 8px;
   max-width: 720px;
-  width: 95%;
+  width: 50%;
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   position: relative;
 `;
@@ -43,6 +45,7 @@ const ModalClose = styled.button`
 function App() {
   const [cars, setCars] = useState<Car[]>([]);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [editingCar, setEditingCar] = useState<Car | null>(null);
 
   useEffect(() => {
     api.get('/cars')
@@ -77,16 +80,18 @@ function App() {
   };
 
   const handleUpdateCar = (id: number, updatedCar: Car) => {
-    api.put(`/cars/${id}`, updatedCar)
-      .then(() => {
+    return api.put(`/cars/${id}`, updatedCar)
+      .then((response) => {
         setCars((currentCars) =>
           currentCars.map((car) =>
-            car.id === id ? updatedCar : car
+            car.id === id ? response.data : car
           )
         );
+        return response.data;
       })
       .catch((error) => {
         console.error('Error updating car:', error);
+        throw error;
       });
   };
 
@@ -100,16 +105,43 @@ function App() {
               <>
                 <h1>Meus Carros</h1>
                 <button type="button" onClick={() => setShowAddModal(true)}>Inserir novo carro</button>
-                <CarList cars={cars} onRemoveCar={handleRemoveCar} />
+                <CarList cars={cars} onRemoveCar={handleRemoveCar} onEditCar={(car) => setEditingCar(car)} />
               </>
             } />
+          <Route path="/settings" element={<Settings />} />
           </Routes>
         </MainContent>
-        {showAddModal && (
-          <ModalOverlay onClick={() => setShowAddModal(false)}>
+        {(showAddModal || editingCar) && (
+          <ModalOverlay onClick={() => {
+            setShowAddModal(false);
+            setEditingCar(null);
+          }}>
             <ModalContent onClick={(e) => e.stopPropagation()}>
-              <ModalClose aria-label="Fechar" onClick={() => setShowAddModal(false)}>&times;</ModalClose>
-              <AddNewCar onAddCar={(car) => handleAddCar(car).then(() => setShowAddModal(false))} />
+              <ModalClose aria-label="Fechar" onClick={() => {
+                setShowAddModal(false);
+                setEditingCar(null);
+              }}>&times;</ModalClose>
+              {showAddModal ? (
+                <AddNewCar
+                  onAddCar={(car) =>
+                    handleAddCar(car).then((savedCar) => {
+                      setShowAddModal(false);
+                      return savedCar;
+                    })
+                  }
+                />
+              ) : editingCar ? (
+                <EditCar
+                  car={editingCar}
+                  onUpdateCar={(updatedCar) =>
+                    handleUpdateCar(updatedCar.id, updatedCar).then((savedCar) => {
+                      setEditingCar(null);
+                      return savedCar;
+                    })
+                  }
+                  onCancel={() => setEditingCar(null)}
+                />
+              ) : null}
             </ModalContent>
           </ModalOverlay>
         )}

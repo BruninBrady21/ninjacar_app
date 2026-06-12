@@ -1,3 +1,13 @@
 {
-  "cars": []
+  "cars": [
+    {
+      "modelo": "Etios",
+      "marca": "Toyota",
+      "placa": "FZA-8334",
+      "cor": "Preto",
+      "ano": 2016,
+      "id": "Rb6LMPvxkbs"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

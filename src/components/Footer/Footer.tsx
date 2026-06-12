@@ -36,10 +36,11 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 100;
+  text-align: left;
 `;
 
 const ModalContent = styled.div`
-  background: #fff;
+  background: #D2EACC;
   color: #111;
   max-width: 600px;
   width: 90%;
@@ -59,6 +60,7 @@ const ModalHeader = styled.div`
 const ModalTitle = styled.h2`
   margin: 0;
   font-size: 1.4rem;
+  color: #111;
 `;
 
 const CloseButton = styled.button`
@@ -72,6 +74,7 @@ const CloseButton = styled.button`
 const ModalBody = styled.div`
   color: #333;
   line-height: 1.6;
+  text-align: left;
 `;
 
 const Footer: React.FC = () => {
@@ -84,8 +87,8 @@ const Footer: React.FC = () => {
       <FooterContainer>
         <p>© 2026 NinjaCar Company. All Rights Reserved</p>
         <p>
-          <LinkButton type="button" onClick={() => setModalType("privacy")}>Privacy</LinkButton> | {" "}
-          <LinkButton type="button" onClick={() => setModalType("terms")}>Terms of Service</LinkButton>
+          <LinkButton type="button" onClick={() => setModalType("privacy")}>Privacidade</LinkButton> | {" "}
+          <LinkButton type="button" onClick={() => setModalType("terms")}>Termos de Serviço</LinkButton>
         </p>
       </FooterContainer>
 
@@ -94,7 +97,7 @@ const Footer: React.FC = () => {
           <ModalContent>
             <ModalHeader>
               <ModalTitle id="modal-title">
-                {modalType === "privacy" ? "Privacy Policy" : "Terms of Service"}
+                {modalType === "privacy" ? "Política de Privacidade" : "Termos de Serviço"}
               </ModalTitle>
               <CloseButton aria-label="Close modal" onClick={closeModal}>&times;</CloseButton>
             </ModalHeader>
@@ -104,15 +107,18 @@ const Footer: React.FC = () => {
                   <p>
                     Nossa política de privacidade explica como coletamos, usamos e protegemos suas informações.
                   </p>
+                  <p>&nbsp;</p>
                   <p>
                     Ao usar o NinjaCar, seus dados são tratados com respeito e segurança. Podemos coletar informações básicas para melhorar a experiência e manter o serviço seguro.
                   </p>
+                  
                 </>
               ) : (
                 <>
                   <p>
                     Estes termos de serviço descrevem as regras de uso do NinjaCar. Ao acessar o serviço, você concorda com nossos termos.
                   </p>
+                  <p>&nbsp;</p>
                   <p>
                     Use o aplicativo de forma responsável, respeitando direitos e limites, e entenda que atualizações podem alterar essas regras.
                   </p>
