@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import api from './services/api';
 import CarList from './pages/CarList';
-import AddNewCar from './pages/AddNewCar';
-import EditCar from './pages/EditCar';
+import AddNewCar from './components/CarsFunctions/AddNewCar';
+import EditCar from './components/CarsFunctions/EditCar';
 import Settings from './pages/Settings';
-import CarFilter from './components/CarFilter/CarFilter';
+import CarFilter from './components/CarsFunctions/CarFilter';
 import MainContent from './components/MainContent/MainContent';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -54,7 +54,7 @@ function App() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingCar, setEditingCar] = useState<Car | null>(null);
   const [filter, setFilter] = useState<{ marcas: string[]; modelos: string[]; anos: number[] }>({ marcas: [], modelos: [], anos: [] });
-
+  
   useEffect(() => {
     api.get('/cars')
       .then((response) => {
@@ -114,9 +114,6 @@ function App() {
                 <h1>Meus Carros</h1>
                 <button type="button" onClick={() => setShowAddModal(true)}>Inserir novo carro</button>
                 <CarFilter cars={cars} onChange={(f) => setFilter(f)} />
-                {
-                  /* compute filtered list based on filter state */
-                }
                 {(() => {
                   const filtered = cars.filter((c) => {
                     if (filter.marcas.length > 0 && !filter.marcas.includes(c.marca)) return false;
@@ -124,6 +121,7 @@ function App() {
                     if (filter.anos.length > 0 && !filter.anos.includes(c.ano)) return false;
                     return true;
                   });
+
                   return <CarList cars={filtered} onRemoveCar={handleRemoveCar} onEditCar={(car) => setEditingCar(car)} />;
                 })()}
               </>

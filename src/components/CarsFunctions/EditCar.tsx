@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import type { Car } from "../types/types";
-import type { FormikHelpers } from "formik";
+import type { Car } from "../../types/types";
 
 interface EditCarProps {
   car: Car;
