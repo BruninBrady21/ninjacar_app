@@ -7,6 +7,7 @@ const FooterContainer = styled.footer`
   text-align: center;
   padding: 10px 0;
   width: 100%;
+  font-family: 'Bahnschrift', sans-serif;
 `;
 
 const LinkButton = styled.button`
@@ -45,6 +46,7 @@ const ModalContent = styled.div`
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   padding: 24px;
   position: relative;
+  font-family: 'Bahnschrift', sans-serif;
 `;
 
 const ModalHeader = styled.div`

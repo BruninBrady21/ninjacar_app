@@ -11,6 +11,7 @@ import MainContent from './components/MainContent/MainContent';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import type { Car } from './types/types';
+import { FaPlus } from 'react-icons/fa';
 import './App.css';
 
 const AppContainer = styled.div`
@@ -47,6 +48,39 @@ const ModalClose = styled.button`
   background: transparent;
   font-size: 22px;
   cursor: pointer;
+`;
+
+const Title = styled.h1`
+  color: #000000;
+  font-size: 2rem;
+  font-family: 'Bahnschrift', sans-serif;
+  margin-bottom: 20px;
+`;
+
+const AddButton = styled.button`
+  background: linear-gradient(135deg, #34c759, #28a745);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 22px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(40, 167, 69, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 `;
 
 function App() {
@@ -111,8 +145,13 @@ function App() {
           <Routes>
             <Route path="/" element={
               <>
-                <h1>Meus Carros</h1>
-                <button type="button" onClick={() => setShowAddModal(true)}>Inserir novo carro</button>
+                <Title>
+                  Meus Carros
+                </Title>
+                {/* <button type="button" onClick={() => setShowAddModal(true)}>Inserir novo carro</button> */}
+                <AddButton type="button" onClick={() => setShowAddModal(true)}>
+                  <FaPlus /> Novo carro
+                </AddButton>
                 <CarFilter cars={cars} onChange={(f) => setFilter(f)} />
                 {(() => {
                   const filtered = cars.filter((c) => {

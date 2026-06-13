@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import type { Car } from "../types/types";
+import { FaTrash, FaPen } from 'react-icons/fa';
 
 interface CarListProps {
   cars: Car[];
@@ -39,6 +40,9 @@ const Button = styled.button<{ variant?: "danger" | "secondary" }>`
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 
   &:hover {
     background-color: ${({ variant }) => (variant === "secondary" ? "#5a6268" : "#7e0d19")};
@@ -57,10 +61,10 @@ const CarList: React.FC<CarListProps> = ({ cars, onRemoveCar, onEditCar }) => {
           </div>
           <ActionGroup>
             <Button type="button" variant="secondary" onClick={() => onEditCar(car)}>
-              Editar
+              <FaPen /> Editar
             </Button>
             <Button type="button" variant="danger" onClick={() => onRemoveCar(car.id)}>
-              Remover
+              <FaTrash /> Remover
             </Button>
           </ActionGroup>
         </ListItem>

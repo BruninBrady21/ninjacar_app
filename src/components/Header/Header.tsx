@@ -15,7 +15,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   background-color: #D2EACC;
   color: white;
-  padding: 20px 24px;
+  padding: 10px 0;
   gap: 12px;
   box-sizing: border-box;
 `;
@@ -27,29 +27,22 @@ const BrandRow = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
 `;
 
 const BrandName = styled.h1`
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.5rem;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-family: 'Bahnschrift', sans-serif;
 `;
 
 const BrandPart = styled.span<{ color?: string }>`
   color: ${({ color }) => color || 'white'};
-`;
-
-const Slogan = styled.p`
-  margin: 0;
-  color: #5c5959;
-  font-size: 1rem;
-  text-align: center;
-  font-style: italic;
 `;
 
 const Nav = styled.nav`
@@ -64,6 +57,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
+  font-family: 'Bahnschrift', sans-serif;
 
   &:hover {
     color: #00c853;
@@ -80,7 +74,6 @@ const Header: React.FC = () => {
           <BrandPart color="#00c853">Car</BrandPart>
         </BrandName>
       </BrandRow>
-      <Slogan>Seu veículo na melhor listagem ninja!</Slogan>
       <Nav>
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/settings">Configurações</StyledLink>
