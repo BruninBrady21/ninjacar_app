@@ -78,11 +78,11 @@ http://localhost:5173
 - [ ] Sistema de carros favoritos
 - [ ] Associação de imagem ao carro 
 - [ ] Melhorar responsividade e aparência dos filtros
-- [ ] Incluir opção de, ao clicar, abri uma modal window com todos os detalhes do carro e, se possível, fotos referentes ao modelo do carro
+- [ ] Incluir opção de, ao clicar, abrir uma modal window com todos os detalhes do carro e, se possível, fotos referentes ao modelo do carro
 
 ## Créditos
 - Algumas imagens e recursos visuais utilizados neste projeto pertencem aos seus respectivos autores e são empregados exclusivamente para fins educacionais, sem finalidade comercial.
-- O GIF utilizado nas páginas "Em Construção" e "Favoritos", além do favicon presente na aba do navegador é derivado do seriado de televisão "LEGO Ninjago: Mestres do Spinjitzu", cujos direitos pertencem à LEGO Group e à Wil Film ApS.
+- O GIF utilizado nas páginas "Em Construção" e "Favoritos" e o favicon presente na aba do navegador são derivados do seriado de televisão "LEGO Ninjago: Mestres do Spinjitzu", cujos direitos pertencem à LEGO Group e à Wil Film ApS.
 - As marcas e modelos de veículos mencionados pertencem às respectivas fabricantes.
 
 ## Licença
