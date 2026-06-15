@@ -13,6 +13,7 @@ git clone https://github.com/BruninBrady21/ninjacar_app.git
 cd NinjaCar
 npm install
 npm run dev
+json-server --watch db.json --port 3001
 ```
 
 ## Índice
@@ -55,6 +56,13 @@ EXECUTE A APLICAÇÃO:
 
 Após iniciar o servidor, a aplicação estará disponível em:
 http://localhost:5173
+
+INICIALIZE A API:
+Para trazer os dados já guardados na API do Axios e garantir a persistência dos novos dados cadastrados, rode o comando:
+json-server --watch db.json --port 3001
+
+O banco de dados fictício será inicializado na porta 3001 e estará disponível para visualização em:
+http://localhost:3001
 
 ## Funcionalidades
 - Listagem de carros cadastrados.
