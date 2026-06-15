@@ -62,7 +62,7 @@ http://localhost:5173
 - Filtragem por marca, modelo e ano.
 - Edição de carros.
 - Remoção de carros.
-- Visualização detalhada dos itens.
+- Visualização dos itens.
 
 ## Requisitos Não Funcionais
 - O sistema foi desenvolvido utilizando React.
@@ -78,6 +78,7 @@ http://localhost:5173
 - [ ] Sistema de carros favoritos
 - [ ] Associação de imagem ao carro 
 - [ ] Melhorar responsividade e aparência dos filtros
+- [ ] Incluir opção de, ao clicar, abri uma modal window com todos os detalhes do carro e, se possível, fotos referentes ao modelo do carro
 
 ## Créditos
 - Algumas imagens e recursos visuais utilizados neste projeto pertencem aos seus respectivos autores e são empregados exclusivamente para fins educacionais, sem finalidade comercial.
