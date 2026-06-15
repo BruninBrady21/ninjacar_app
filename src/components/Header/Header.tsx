@@ -2,22 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../../assets/ninja.png';
+import { FaHome } from 'react-icons/fa';
+import { BsGearFill } from "react-icons/bs";
+import { AiFillStar } from "react-icons/ai";
 
 const HeaderContainer = styled.header`
-  position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #D2EACC;
+  background-color: #009739;
   color: white;
   padding: 10px 0;
   gap: 12px;
   box-sizing: border-box;
+  width: 100%;
 `;
 
 const BrandRow = styled.div`
@@ -50,17 +48,30 @@ const Nav = styled.nav`
   gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 `;
 
 const StyledLink = styled(Link)`
-  color: #5c5959;
+  color: #c8c8c8;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
   font-family: 'Bahnschrift', sans-serif;
 
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1;
+  margin-top: 10px;
+
   &:hover {
-    color: #00c853;
+    color: #33f383;
+  }
+
+  svg {
+    vertical-align: middle;
+    position: relative;
+    top: -1.5px;
   }
 `;
 
@@ -71,12 +82,13 @@ const Header: React.FC = () => {
         <Logo src={logo} alt="NinjaCar logo" />
         <BrandName>
           <BrandPart color="#000">Ninja</BrandPart>
-          <BrandPart color="#00c853">Car</BrandPart>
+          <BrandPart color="#33f383">Car</BrandPart>
         </BrandName>
       </BrandRow>
       <Nav>
-        <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/settings">Configurações</StyledLink>
+        <StyledLink to="/"> <FaHome /> Home</StyledLink>
+        <StyledLink to="/favorites"> <AiFillStar /> Favoritos</StyledLink>
+        <StyledLink to="/settings"> <BsGearFill /> Configurações</StyledLink>
       </Nav>
     </HeaderContainer>
   );

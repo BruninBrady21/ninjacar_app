@@ -17,14 +17,14 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #009739;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #131313;
 `;
-
 
 const ActionGroup = styled.div`
   display: flex;
@@ -45,8 +45,15 @@ const Button = styled.button<{ variant?: "danger" | "secondary" }>`
   gap: 5px;
 
   &:hover {
-    background-color: ${({ variant }) => (variant === "secondary" ? "#5a6268" : "#7e0d19")};
+    background-color: ${({ variant }) => (variant === "secondary" ? "#b9c305" : "#7e0d19")};
   }
+`;
+
+const CarInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 `;
 
 const CarList: React.FC<CarListProps> = ({ cars, onRemoveCar, onEditCar }) => {
@@ -54,11 +61,10 @@ const CarList: React.FC<CarListProps> = ({ cars, onRemoveCar, onEditCar }) => {
     <List>
       {cars.map((car) => (
         <ListItem key={car.id}>
-          <div>
-            <strong>{car.marca}</strong> - {car.modelo} ({car.ano}) | {car.placa}
-            <br />
+          <CarInfo>
+            <span><strong>{car.marca}</strong> - {car.modelo} ({car.ano}) | {car.placa}</span>
             <small>Cor: {car.cor}</small>
-          </div>
+          </CarInfo>
           <ActionGroup>
             <Button type="button" variant="secondary" onClick={() => onEditCar(car)}>
               <FaPen /> Editar

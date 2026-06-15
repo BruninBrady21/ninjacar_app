@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import type { Car } from "../../types/types";
+import { SaveButton, CancelButton } from "../Buttons/EditButton";
 
 interface EditCarProps {
   car: Car;
@@ -48,33 +49,6 @@ const ButtonBar = styled.div`
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-`;
-
-const Button = styled.button`
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-`;
-
-const SaveButton = styled(Button)`
-  background-color: #007bff;
-  color: white;
-
-  &:hover {
-    background-color: #0069d9;
-  }
-`;
-
-const CancelButton = styled(Button)`
-  background-color: #6c757d;
-  color: white;
-
-  &:hover {
-    background-color: #5a6268;
-  }
 `;
 
 const EditCar: React.FC<EditCarProps> = ({ car, onUpdateCar, onCancel }) => (

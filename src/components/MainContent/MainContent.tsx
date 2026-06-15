@@ -7,7 +7,9 @@ const MainContentContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e1edde;
+  background-color: #D2EACC;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 const MainContent: React.FC<{ children: React.ReactNode }> = ({ children }) => {

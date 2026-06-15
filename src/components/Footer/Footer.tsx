@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
-  background-color: #D2EACC;
-  color: #5c5959;
+  background-color: #009739;
+  color: #eaeaea;
   text-align: center;
   padding: 10px 0;
   width: 100%;
@@ -11,7 +11,7 @@ const FooterContainer = styled.footer`
 `;
 
 const LinkButton = styled.button`
-  color: #5c5959;
+  color: #bebebe;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -22,7 +22,7 @@ const LinkButton = styled.button`
   transition: color 0.2s ease;
 
   &:hover {
-    color: #00c853;
+    color: #33f383;
   }
 `;
 
@@ -92,8 +92,8 @@ const Footer: React.FC = () => {
       </FooterContainer>
 
       {modalType && (
-        <ModalOverlay role="dialog" aria-modal="true" aria-labelledby="modal-title">
-          <ModalContent>
+        <ModalOverlay role="dialog" aria-modal="true" aria-labelledby="modal-title" onClick={closeModal}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
             <ModalHeader>
               <ModalTitle id="modal-title">
                 {modalType === "privacy" ? "Política de Privacidade" : "Termos de Serviço"}

@@ -1,33 +1,18 @@
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import type { Car } from '../../types/types';
+import { FaFilter } from 'react-icons/fa';
+import { FilterButton, ClearButton } from '../Buttons/FilterButton';
 
 const FilterWrapper = styled.div`
-  width: 50vw;
-  margin: 16px 0;
   position: relative;
-`;
-
-const FilterButton = styled.button`
-  background: #2d2d2d;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.2s ease;
-
-  &:hover {
-    background: #1f1f1f;
-  }
 `;
 
 const DropdownPanel = styled.div<{ open: boolean }>`
   margin-top: 12px;
-  padding: 18px;
+  padding: 10px;
   border-radius: 12px;
-  background: #f1f5f1;
+  background-color: #B0DAA6; /* cor de fundo do painel de filtros */
   border: 1px solid #dcdcdc;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
   display: ${({ open }) => (open ? 'block' : 'none')};
@@ -47,33 +32,20 @@ const OptionList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  color: #333; /* cor do texto dos itens */
 `;
 
 const OptionItem = styled.label`
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 5px 12px;
   border-radius: 100px;
-  background: #fff;
+  background: #D2EACC; /* cor de fundo das opções de filtro */ 
   border: 1px solid #d8d8d8;
   cursor: pointer;
   user-select: none;
-  font-size: 0.95rem;
-`;
-
-const ClearButton = styled.button`
-  background: transparent;
-  border: 1px solid #888;
-  color: #333;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.95rem;
-
-  &:hover {
-    background: #e5e5e5;
-  }
+  font-size: 0.9rem;
 `;
 
 type Filter = {
@@ -136,7 +108,7 @@ const CarFilter: React.FC<Props> = ({ cars, onChange }) => {
   return (
     <FilterWrapper>
       <FilterButton type="button" onClick={() => setIsOpen((prev) => !prev)}>
-        Filtrar Veículos
+        <FaFilter /> Filtrar
       </FilterButton>
       <DropdownPanel open={isOpen}>
         <Section>

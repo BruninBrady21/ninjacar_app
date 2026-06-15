@@ -8,10 +8,12 @@ A aplicação tem como objetivo realizar o gerenciamento de uma coleção de car
 
 ## Quick Start
 
-"```bash
+```bash
 git clone https://github.com/BruninBrady21/ninjacar_app.git
+cd NinjaCar
 npm install
-npm run dev"
+npm run dev
+```
 
 ## Índice
 
@@ -75,6 +77,7 @@ http://localhost:5173
 - [ ] Página de Configurações
 - [ ] Sistema de carros favoritos
 - [ ] Associação de imagem ao carro 
+- [ ] Melhorar responsividade e aparência dos filtros
 
 ## Créditos
 - Algumas imagens e recursos visuais utilizados neste projeto pertencem aos seus respectivos autores e são empregados exclusivamente para fins educacionais, sem finalidade comercial.

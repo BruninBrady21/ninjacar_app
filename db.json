@@ -9,28 +9,44 @@
       "id": "Rb6LMPvxkbs"
     },
     {
+      "modelo": "Onix",
+      "marca": "Chevrolet",
+      "placa": "EDY4G21",
+      "cor": "Prata",
+      "ano": 2020,
+      "id": "K_tbFcHO69Y"
+    },
+    {
+      "modelo": "Focus",
+      "marca": "Ford",
+      "placa": "EDC9L12",
+      "cor": "Vermelho",
+      "ano": 2021,
+      "id": "gxKn3GnKxlU"
+    },
+    {
+      "modelo": "Corsa",
+      "marca": "Chevrolet",
+      "placa": "DGH-2098",
+      "cor": "Verde",
+      "ano": 1999,
+      "id": "hjVtPGNDJSY"
+    },
+    {
+      "modelo": "Gol",
+      "marca": "Volkswagen",
+      "placa": "QJK-5782",
+      "cor": "Branco",
+      "ano": 2005,
+      "id": "oxVycp1b65A"
+    },
+    {
       "modelo": "Corolla",
       "marca": "Toyota",
-      "placa": "qeokd785",
-      "cor": "roxo",
-      "ano": 1234,
-      "id": "9LFSZJ3ERh4"
-    },
-    {
-      "modelo": "Focus",
-      "marca": "Ford",
-      "placa": "23rf4",
-      "cor": "ierojc",
-      "ano": 1234,
-      "id": "-Mz0_NP9p2I"
-    },
-    {
-      "modelo": "Focus",
-      "marca": "Ford",
-      "placa": "erf-1209",
-      "cor": "Prata",
-      "ano": 2019,
-      "id": "mPyUfm1NX_A"
+      "placa": "FMC2O15",
+      "cor": "Amarelo",
+      "ano": 2023,
+      "id": "5jfUXfzNDeg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
